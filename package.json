@@ -16,9 +16,36 @@
     "gulp-stylus":"0.0.14",
     "gulp-watch":"0.5.2",
     "path":"0.4.9",
-    "gulp-connect":"1.0.7"
+    "gulp-connect":"1.0.7",
+    "gulp-browserify":"0.5.0",
+    "gulp-rename":"1.2.0",
+    "coffeeify":"0.6.0",
+    "browserify":"3.32.1",
+    "browserify-shim":"3.3.1"
   },
   "engines": {
     "node": ">=0.8.0"
+  },
+  "browserify": {
+    "transform": ["browserify-shim","coffeeify"]
+  },
+  "browser":{
+    "jquery"                : "./bower_components/jquery/dist/jquery.js",
+    "underscore"            : "./bower_components/underscore/underscore.js",
+    "json2"                 : "./bower_components/json2/json2.js",
+    "backbone"              : "./bower_components/backbone/backbone.js",
+    "backbone.marionette"   : "./bower_components/marionette/lib/backbone.marionette.js"
+  },
+  "browserify-shim":{
+    "jquery"      : "$",
+    "underscore"  : "_",
+    "backbone"    : {
+      "depends": ["jquery:$","underscore:_"],
+      "exports": "Backbone"
+    },
+    "backbone.marionette"  : {
+      "depends": ["backbone:Backbone"],
+      "exports": "Marionette"
+    }
   }
 }

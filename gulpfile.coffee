@@ -1,9 +1,11 @@
-gulp    = require 'gulp'
-coffee  = require 'gulp-coffee'
-stylus  = require 'gulp-stylus'
-path    = require 'path'
-watch   = require 'gulp-watch'
-connect = require 'gulp-connect'
+gulp        = require 'gulp'
+coffee      = require 'gulp-coffee'
+stylus      = require 'gulp-stylus'
+path        = require 'path'
+watch       = require 'gulp-watch'
+connect     = require 'gulp-connect'
+browserify  = require 'gulp-browserify'
+rename      = require 'gulp-rename'
 
 gulp.task 'connect', connect.server
   root: ['dist']
@@ -13,16 +15,12 @@ gulp.task 'connect', connect.server
     browser: 'Google Chrome'
 
 gulp.task 'coffee', ->
-  gulp.src './src/js/*.coffee'
-    .pipe(watch())
-    .pipe(
-      coffee
-        bare: true
-    )
-    .pipe(
-      gulp.dest './dist/js/'
-    )
-    .pipe(connect.reload())
+  gulp.src('./src/js/app.coffee', {read: false})
+    # .pipe(watch())
+    .pipe(browserify())
+    .pipe(rename('app.js'))
+    .pipe(gulp.dest './dist/js/')
+    # .pipe(connect.reload())
 
 gulp.task 'stylus', ->
   gulp.src './src/css/*.styl'
@@ -38,11 +36,6 @@ gulp.task 'copy', ->
     .pipe(watch())
     .pipe(gulp.dest './dist/')
     .pipe(connect.reload())
-  gulp.src [
-    './bower_components/jquery/dist/jquery.js',
-    './bower_components/underscore/underscore.js',
-  ]
-    .pipe(gulp.dest './dist/js/')
   gulp.src './src/images/*'
     .pipe(watch())
     .pipe(gulp.dest './dist/images')
