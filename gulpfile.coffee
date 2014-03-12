@@ -15,12 +15,12 @@ gulp.task 'connect', connect.server
     browser: 'Google Chrome'
 
 gulp.task 'coffee', ->
-  gulp.src('./src/js/app.coffee', {read: false})
-    # .pipe(watch())
+  gulp.src('./src/js/**/*.coffee', {read: false})
+    .pipe(watch())
     .pipe(browserify())
     .pipe(rename('app.js'))
     .pipe(gulp.dest './dist/js/')
-    # .pipe(connect.reload())
+    .pipe(connect.reload())
 
 gulp.task 'stylus', ->
   gulp.src './src/css/*.styl'
