@@ -1,4 +1,6 @@
-module.exports = class App.Controllers.Base extends Marionette.Controller
+App.register "App.Controllers.Base", =>
 
-  initialize: (options = {}) ->
-    console.log "Hello!"
+  class App.Controllers.Base extends Marionette.Controller
+
+    initialize: (options = {}) ->
+      console.log "Hello!"
