@@ -1,5 +1,5 @@
 gulp        = require 'gulp'
-coffee      = require 'gulp-coffee'
+# coffee      = require 'gulp-coffee'
 stylus      = require 'gulp-stylus'
 path        = require 'path'
 watch       = require 'gulp-watch'
@@ -11,13 +11,16 @@ gulp.task 'connect', connect.server
   root: ['dist']
   port: 1337
   livereload: true
-  open:
-    browser: 'Google Chrome'
+  # open:
+  #   browser: 'Google Chrome'
 
 gulp.task 'coffee', ->
-  gulp.src('./src/js/**/*.coffee', {read: false})
+  gulp.src('./src/js/app.coffee', {read: false})
     .pipe(watch())
-    .pipe(browserify())
+    .pipe(browserify(
+      extensions: [".coffee"]
+      debug: !gulp.env.production
+    ))
     .pipe(rename('app.js'))
     .pipe(gulp.dest './dist/js/')
     .pipe(connect.reload())

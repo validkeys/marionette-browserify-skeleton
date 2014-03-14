@@ -1,6 +1,6 @@
-require "lib/controllers/controller"
+# require "lib/controllers/controller"
 
-module.exports = class App.Components.Example.Controller extends App.Controllers.Base
+# module.exports = class App.Components.Example.Controller extends App.Controllers.Base
 
-  initialize: (options = {}) ->
-    console.log "Hello from example controller"
+#   initialize: (options = {}) ->
+#     console.log "Hello from example controller"

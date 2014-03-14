@@ -8,20 +8,14 @@ window.Marionette      = require('backbone.marionette')
 window.Marionette.$ = Backbone.$ = $
 
 
+Application = require('./lib/application/base')
+
 ## Game Time
 $((() ->
 
-  window.App = App = new Marionette.Application()
-
-  App.addInitializer (options) ->
-    console.log "app initialized!"
-
-  App.start()
+  window.App = App = new Application()
 
 ))
-
-# alert Marionette
-console.log window.Marionette
 
 
 

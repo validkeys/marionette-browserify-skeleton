@@ -21,13 +21,15 @@
     "gulp-rename":"1.2.0",
     "coffeeify":"0.6.0",
     "browserify":"3.32.1",
-    "browserify-shim":"3.3.1"
+    "browserify-shim":"3.3.1",
+    "watchify":"0.6.1"
   },
   "engines": {
     "node": ">=0.8.0"
   },
   "browserify": {
-    "transform": ["browserify-shim","coffeeify"]
+    "transform":  ["browserify-shim","coffeeify"],
+    "extensions": [".coffee"]
   },
   "browser":{
     "jquery"                : "./bower_components/jquery/dist/jquery.js",
